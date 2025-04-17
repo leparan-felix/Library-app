@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
+import Home from '../pages/Home';
 
 function Navbar() {
   return (
@@ -14,6 +15,7 @@ function Navbar() {
       <NavLink to="/favorites" className={({ isActive }) => isActive ? 'nav-link nav-link-active' : 'nav-link'}>
         Favorite Books
       </NavLink>
+      <Home />
     </nav>
   );
 }

@@ -1,14 +1,21 @@
 /* src/components/Navbar.css */
 .navbar {
+    position: fixed;         /* Keeps it at the top */
+    top: 0;                  /* Aligns it to the top of the viewport */
+    left: 0;
+    right: 0;
+    background-color: #f8f8f8;
     padding: 1rem;
     border-bottom: 1px solid #ddd;
-    background-color: #f8f8f8;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    z-index: 1000;           /* Ensures it's on top of other elements */
   }
   
   .nav-link {
-    color: #333;
     text-decoration: none;
-    margin-right: 1rem;
+    color: #333;
   }
   
   .nav-link-active {
