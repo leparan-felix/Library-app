@@ -1,24 +1,18 @@
-import React from 'react'
+// src/components/Navbar.js
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css'; // Optional styling
 
- function Navbar() {
+function Navbar() {
   return (
-    <div>
-      <nav>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#add">Add Book</a></li>
-   
-  </ul>
-</nav>
-        <h1>Welcome to our library app</h1>
-        <p>This is a simple website with a navigation bar.</p>
-        <p>Click on the links above to navigate.</p>
-        <div id="home">
-            <h2>Home</h2>
-            <p>This is the home section.</p>
-        
-        </div>
-    </div>
-  )
+    <nav className="navbar">
+      <ul className="nav-links">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/add">Add Book</Link></li>
+        <li><Link to="/favorites">Favorites</Link></li>
+      </ul>
+    </nav>
+  );
 }
+
 export default Navbar;
