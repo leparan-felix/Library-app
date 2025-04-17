@@ -2,19 +2,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-
+import BookList from './pages/BookList';
+import Home from './pages/Home';
 function App() {
   return (
     <Router>
       <Navbar />
-      <div className="container" style={{ padding: '1rem' }}>
-        <Routes>
-          {/* Add your real pages here */}
-          <Route path="/" element={<h1>Home Page</h1>} />
-          <Route path="/add" element={<h1>Add Book Page</h1>} />
-          <Route path="/edit" element={<h1>Edit Page</h1>} />
-        </Routes>
-      </div>
+      <Routes>
+        
+        <Route path="/" element={<Home />} />
+        <Route path="/BookList" element={<BookList />} />
+        {/* other routes */}
+      </Routes>
+
     </Router>
   );
 }
