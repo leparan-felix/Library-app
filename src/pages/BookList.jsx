@@ -1,8 +1,11 @@
-// src/pages/BookList.jsx
-import React from 'react';
+import React from 'react'
 
 function BookList() {
-  return <h1>Book List Page</h1>;
+  return (
+    <div>
+      
+    </div>
+  )
 }
 
-export default BookList;
+export default BookList
