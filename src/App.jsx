@@ -11,7 +11,6 @@ function App() {
         <Routes>
           {/* Add your real pages here */}
           <Route path="/" element={<h1>Home Page</h1>} />
-        
           <Route path="/add" element={<h1>Add Book Page</h1>} />
           <Route path="/edit" element={<h1>Edit Page</h1>} />
         </Routes>
