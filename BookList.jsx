@@ -13,5 +13,5 @@ useEffect(() => {
     if (!res.ok) {
       throw new Error('Book not found');
       return res.json();      
-    })
+    }
     .catch
