@@ -1,6 +1,6 @@
 import React from 'react'
 
-function BookList() {
+function Home() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function BookList() {
   )
 }
 
-export default BookList
+export default Home
