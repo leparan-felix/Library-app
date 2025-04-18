@@ -1,12 +1,4 @@
-
-import React from "react";
-
-function AddBook() {
-  return <div></div>;
-}
-
-export default AddBook;
-
+// src/pages/AddBook.jsx
 import React, { useState } from "react";
 
 function AddBook() {
@@ -35,7 +27,6 @@ function AddBook() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Book added:", data);
-        // optionally reset form or show a message
         setTitle("");
         setAuthor("");
         setGenre("");
@@ -82,4 +73,3 @@ function AddBook() {
 }
 
 export default AddBook;
-
