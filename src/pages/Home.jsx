@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BookList from '../components/BookList';
 
 const Home = () => {
   return (
@@ -21,6 +22,7 @@ const Home = () => {
         >
           Add a Book
         </Link>
+        <BookList />
       </div>
     </div>
   );
