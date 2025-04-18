@@ -11,15 +11,11 @@ const Navbar = () => {
           <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             Home
           </NavLink>
-          <NavLink to="/books" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            All Books
-          </NavLink>
+          
           <NavLink to="/add" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             Add Book
           </NavLink>
-          <NavLink to="/favorites" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            Favorites
-          </NavLink>
+          
         </div>
       </div>
     </nav>
