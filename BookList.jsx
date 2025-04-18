@@ -24,3 +24,23 @@ setLoading(false);
 },[id]);
 const handleSubmit=(e)=>{
   e.preventDefault(); 
+  fetch(`http://localhost:3000/books/${id}`,{
+method :'PATCH',  
+headers:{
+  'Content-Type':'application/json',
+},
+body:JSON.stringify({
+  title,
+  author,
+}),
+}).then((res)=>{
+  if(!res.ok)throw new Error("Failed to update book");
+  if(res.status===404)throw new Error("Book not found");
+  return res.json();
+}).then((data)=>{
+  console.log(data);
+  navigate("/books");
+}).catch((err)=>{
+  setError(err.message);
+});
+}
