@@ -1,49 +1,53 @@
-// Import required hooks and component
 import { useEffect, useState } from "react";
 import BookCard from "./BookCard";
+import SearchBar from "./SearchBar";
 
 function BookList() {
-  // State to store all books
+  // Store all books
   const [books, setBooks] = useState([]);
 
-  // State to track loading
+  // Loading state
   const [loading, setLoading] = useState(true);
 
-  // Fetch books when component loads
+  // Search input
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Fetch books from server
   useEffect(() => {
     fetch("http://localhost:3004/books")
       .then((res) => res.json())
       .then((data) => {
-        setBooks(data);        // Store books in state
-        setLoading(false);     // Stop loading spinner
+        setBooks(data);
+        setLoading(false);
       })
-      .catch(() => setLoading(false)); // Stop loading if there's an error
+      .catch(() => setLoading(false));
   }, []);
 
-  // Handle delete button
+  // Handle delete
   const handleDelete = (id) => {
     fetch(`http://localhost:3004/books/${id}`, {
       method: "DELETE",
     }).then(() => {
-      // Filter out deleted book from UI
       const updated = books.filter((book) => book.id !== id);
       setBooks(updated);
     });
   };
 
-  // Show loading text if fetching
-  if (loading) return <p>Loading books...</p>;
+  // Filter books based on search
+  const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
-      <h2>📚 Book List</h2>
+      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
 
-      {/* Show message if no books */}
-      {books.length === 0 ? (
-        <p>No books available.</p>
+      {loading ? (
+        <p>Loading books...</p>
+      ) : filteredBooks.length === 0 ? (
+        <p>No matching books found.</p>
       ) : (
-        // Loop through all books and render BookCard
-        books.map((book) => (
+        filteredBooks.map((book) => (
           <BookCard key={book.id} book={book} onDelete={handleDelete} />
         ))
       )}
