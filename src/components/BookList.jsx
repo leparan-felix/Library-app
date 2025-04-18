@@ -3,16 +3,10 @@ import BookCard from "./BookCard";
 import SearchBar from "./SearchBar";
 
 function BookList() {
-  // Store all books
   const [books, setBooks] = useState([]);
-
-  // Loading state
   const [loading, setLoading] = useState(true);
-
-  // Search input
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch books from server
   useEffect(() => {
     fetch("http://localhost:3004/books")
       .then((res) => res.json())
@@ -23,7 +17,6 @@ function BookList() {
       .catch(() => setLoading(false));
   }, []);
 
-  // Handle delete
   const handleDelete = (id) => {
     fetch(`http://localhost:3004/books/${id}`, {
       method: "DELETE",
@@ -33,13 +26,12 @@ function BookList() {
     });
   };
 
-  // Filter books based on search
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div>
+    <div className="booklist-container">
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
 
       {loading ? (
@@ -47,9 +39,11 @@ function BookList() {
       ) : filteredBooks.length === 0 ? (
         <p>No matching books found.</p>
       ) : (
-        filteredBooks.map((book) => (
-          <BookCard key={book.id} book={book} onDelete={handleDelete} />
-        ))
+        <div className="booklist-grid">
+          {filteredBooks.map((book) => (
+            <BookCard key={book.id} book={book} onDelete={handleDelete} />
+          ))}
+        </div>
       )}
     </div>
   );
