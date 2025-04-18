@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import BookList from './pages/BookList';
 import Home from './pages/Home';
+import AddBook from './pages/AddBook';
 function App() {
   return (
     <Router>
@@ -13,6 +14,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/BookList" element={<BookList />} />
         {/* other routes */}
+        <Route path="/add" element={<AddBook />} />
+        
       </Routes>
 
     </Router>
