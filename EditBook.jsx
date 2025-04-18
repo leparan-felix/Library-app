@@ -19,14 +19,15 @@ const EditBook = () => {
         return res.json();
       })
       .then((data) => {
-        setTitle(data.title);
-        setAuthor(data.author);
-        setGenre(data.genre);
-        setImage(data.image);
+        setTitle(data.title || '');
+        setAuthor(data.author || '');
+        setGenre(data.genre || '');
+        setImage(data.image || '');
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        console.error('Fetch error:', err);
+        setError(err.message || 'Something went wrong');
         setLoading(false);
       });
   }, [id]);
@@ -45,7 +46,10 @@ const EditBook = () => {
         return res.json();
       })
       .then(() => navigate('/'))
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        console.error('Update error:', err);
+        setError(err.message || 'Something went wrong');
+      });
   };
 
   if (loading) return <p>Loading...</p>;
@@ -85,4 +89,10 @@ const EditBook = () => {
           onChange={(e) => setImage(e.target.value)}
         />
 
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  );
+};
 
+export default EditBook;
