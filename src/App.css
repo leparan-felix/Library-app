@@ -2,7 +2,16 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  font-family: 'Merriweather', serif;
+  background-color: #f9f4e8;
+  background-image: url();
   text-align: center;
+  color: #3a2c1a;
+}
+
+.header {
+  background: linear-gradient(135deg, #6b4f2f 0%, #3a2c1a 100%);
+  
 }
 
 .logo {
