@@ -25,7 +25,7 @@ function App() {
         </main>
 
         <footer className="library-footer">
-          <p>© {new Date().getFullYear()} My Personal Library. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Library App</p>
         </footer>
       </Router>
     </div>
