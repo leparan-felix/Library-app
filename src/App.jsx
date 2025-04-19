@@ -11,13 +11,9 @@ function App() {
     <div id="root">
       <Router>
         <header className="header">
-          <h1>My Personal Book Library</h1>
+          
           <Navbar />
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/2232/2232688.png" 
-            alt="Book Library Logo" 
-            className="logo" 
-          />
+         
         </header>
 
         <main>
