@@ -1,0 +1,187 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Merriweather', serif;
+  background-color: #f9f4e8;
+  background-image: url();
+  text-align: center;
+  color: #3a2c1a;
+}
+
+.header {
+  background: linear-gradient(135deg, #6b4f2f 0%, #3a2c1a 100%);
+  color: #f9f4e8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(58, 48, 26, 0.2);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(249, 244, 232, 0.2)0%, rgba(107, 79, 47,0) 70%) ;
+
+}
+
+.logo {
+  height: 5em;
+  padding: 1em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.book-card {
+  background: white;
+  border-left: 8px solid #8c6a46;
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 10px rgba(58, 44, 26, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(58, 44, 26, 0.15);
+}
+
+.book-card.favorite {
+  border-left-color: #d4a017;
+  background: #fffdf6;
+}
+
+.book-card.favorite::before {
+  content: "★";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #d4a017;
+  font-size: 1.5rem;
+}
+
+.book-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-edit {
+  background-color: #8c6a46;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #6b4f2f;
+}
+
+.btn-delete {
+  background-color: #c14545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #a03131;
+}
+
+.btn-favorite {
+  background-color: #f0e6cc;
+  color: #8c6a46;
+}
+
+.btn-favorite:hover, .btn-favorite.active {
+  background-color: #d4a017;
+  color: white;
+}
+
+.add-book-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(58, 44, 26, 0.1);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8c6a46;
+  box-shadow: 0 0 0 2px rgba(140, 106, 70, 0.2);
+}
+
+.submit-btn {
+  background-color: #6b4f2f;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #5a3f24;
+}
+
+.empty-state {
+  padding: 3rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(58, 44, 26, 0.1);
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .book-actions {
+    flex-wrap: wrap;
+  }
+}
