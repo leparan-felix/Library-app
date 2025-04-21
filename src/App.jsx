@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import BookList from './pages/BookList';
+import BookList from './components/BookList';
 import AddBook from './pages/AddBook';
 import EditBook from './pages/EditBook';
 import BookDetails from './pages/BookDetails';
@@ -14,11 +14,12 @@ export default function App() {
       <Home />
       
       <Routes>
-        <Route path="/" element={<BookList />} />
+        <Route path="/BookList" element={<BookList />} />
         <Route path="/add" element={<AddBook />} />
         <Route path="/edit/:id" element={<EditBook />} />
         <Route path="/details/:id" element={<BookDetails />} />
         <Route path="/favorites" element={<FavoriteBooks />} />
+        
       </Routes>
     </div>
   );

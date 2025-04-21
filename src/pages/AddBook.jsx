@@ -23,11 +23,19 @@ export default function AddBook() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(book),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to save the book');
+        return res.json();
+      })
       .then((data) => {
-        console.log('📘 Added book:', data); // ✅ Console log
+        console.log('Book saved:', data);
         navigate('/');
+      })
+      .catch((err) => {
+        console.error('Error:', err);
+        alert('Failed to save book. Make sure the server is running.');
       });
+    
   };
 
   return (

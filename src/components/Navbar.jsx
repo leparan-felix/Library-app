@@ -15,7 +15,9 @@ const Navbar = () => {
             Favorite Books
           </NavLink>
           
-          <NavLink to="/BookList" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}></NavLink>
+          <NavLink to="/BookList" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          BookList
+          </NavLink>
           
           <NavLink to="/add" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             Add Book

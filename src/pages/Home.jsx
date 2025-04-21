@@ -9,11 +9,8 @@ const Home = () => {
       <p className="text-lg text-gray-700 mb-6">
         Manage your book collection with ease. Add, edit, favorite, and delete books.
       </p>
-      <div className="flex justify-center gap-4">
-       
-        
-        
-      </div>
+     
+      
     </div>
   );
 };
