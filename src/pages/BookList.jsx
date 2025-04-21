@@ -10,10 +10,10 @@ export default function BookList() {
       .then(setBooks);
   }, []);
 
-  const handleDelete = (id) => {
-    fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' })
-      .then(() => setBooks(books.filter((book) => book.id !== id)));
-  };
+  // const handleDelete = (id) => {
+  //   fetch(`http://localhost:3000/books/${id}`, { method: 'DELETE' })
+  //     .then(() => setBooks(books.filter((book) => book.id !== id)));
+  // };
 
   const toggleFavorite = (book) => {
     fetch(`http://localhost:3000/books/${book.id}`, {
@@ -25,6 +25,17 @@ export default function BookList() {
     });
   };
 
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this book?')) {
+      fetch(`http://localhost:3000/books/${id}`, {
+        method: 'DELETE',
+      }).then(() => {
+        console.log(`🗑️ Deleted book with id: ${id}`);
+        // Refetch books or update state here
+      });
+    }
+  };
+  
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Book List</h1>

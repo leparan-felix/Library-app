@@ -1,10 +1,15 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddBook() {
   const navigate = useNavigate();
-  const [book, setBook] = useState({ title: '', author: '', genre: '', publicationYear: '', isFavorite: false });
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    genre: '',
+    publicationYear: '',
+    isFavorite: false,
+  });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -17,7 +22,12 @@ export default function AddBook() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(book),
-    }).then(() => navigate('/'));
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('📘 Added book:', data); // ✅ Console log
+        navigate('/');
+      });
   };
 
   return (
