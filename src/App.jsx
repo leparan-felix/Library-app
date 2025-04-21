@@ -5,24 +5,31 @@ import BookList from './components/BookList';
 import Home from './pages/Home';
 
 import AddBook from './pages/AddBook';
-
-
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Navbar from "./components/Navbar";
-// import Home from "./pages/Home";
+import './css/App.css'; 
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        
-        <Route path="/add" element={<AddBook />} />
-        <Route path="/books" element={<BookList />} />
-        
-      </Routes>
-    </Router>
+    <div id="root">
+      <Router>
+        <header className="header">
+          
+          <Navbar />
+         
+        </header>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/add" element={<AddBook />} />
+            <Route path="/books" element={<BookList />} />
+          </Routes>
+        </main>
+
+        <footer className="library-footer">
+          <p>© {new Date().getFullYear()} Library App</p>
+        </footer>
+      </Router>
+    </div>
   );
 }
 
