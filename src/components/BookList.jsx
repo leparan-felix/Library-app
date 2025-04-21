@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import BookCard from "./BookCard";
-import SearchBar from "./SearchBar";
 
 function BookList() {
   const [books, setBooks] = useState([]);
@@ -8,7 +7,7 @@ function BookList() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3004/books")
+    fetch("http://localhost:3007/books")
       .then((res) => res.json())
       .then((data) => {
         setBooks(data);
@@ -18,12 +17,13 @@ function BookList() {
   }, []);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:3004/books/${id}`, {
+    fetch(`http://localhost:3007/books/${id}`, {
       method: "DELETE",
-    }).then(() => {
-      const updated = books.filter((book) => book.id !== id);
-      setBooks(updated);
-    });
+    })
+      .then(() => {
+        const updatedBooks = books.filter((book) => book.id !== id);
+        setBooks(updatedBooks);
+      });
   };
 
   const filteredBooks = books.filter((book) =>
@@ -31,19 +31,19 @@ function BookList() {
   );
 
   return (
-    <div className="booklist-container">
-      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-
+    <div>
+      <input
+        type="text"
+        placeholder="Search books"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       {loading ? (
-        <p>Loading books...</p>
-      ) : filteredBooks.length === 0 ? (
-        <p>No matching books found.</p>
+        <p>Loading...</p>
       ) : (
-        <div className="booklist-grid">
-          {filteredBooks.map((book) => (
-            <BookCard key={book.id} book={book} onDelete={handleDelete} />
-          ))}
-        </div>
+        filteredBooks.map((book) => (
+          <BookCard key={book.id} book={book} handleDelete={handleDelete} />
+        ))
       )}
     </div>
   );

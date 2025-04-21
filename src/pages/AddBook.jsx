@@ -1,12 +1,3 @@
-
-import React from "react";
-
-function AddBook() {
-  return <div></div>;
-}
-
-export default AddBook;
-
 import React, { useState } from "react";
 
 function AddBook() {
@@ -82,4 +73,3 @@ function AddBook() {
 }
 
 export default AddBook;
-

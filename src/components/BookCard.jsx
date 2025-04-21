@@ -1,17 +1,15 @@
-function BookCard({ book, onDelete }) {
+import React from "react";
+
+const BookCard = ({ book, handleDelete }) => {
   return (
     <div className="book-card">
       <h2>{book.title}</h2>
-      <p>Author: {book.author}</p>
-      <p>Genre: {book.genre}</p>
-      <p>Year: {book.publicationYear}</p>
-      <p>Favorite: {book.isFavorite ? "❤️" : "❌"}</p>
-
-      <button className="delete-button" onClick={() => onDelete(book.id)}>
-        Delete
-      </button>
+      <p>{book.author}</p>
+      <p>{book.genre}</p>
+      <p>{book.year}</p>
+      <button onClick={() => handleDelete(book.id)}>Delete</button>
     </div>
   );
-}
+};
 
 export default BookCard;
