@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function BookList() {
+export default function FavoriteBooks() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/books')
+    fetch('http://localhost:3000/books?isFavorite=true')
       .then((res) => res.json())
       .then(setBooks);
   }, []);
@@ -20,14 +20,12 @@ export default function BookList() {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ isFavorite: !book.isFavorite }),
-    }).then(() => {
-      setBooks(books.map(b => b.id === book.id ? { ...b, isFavorite: !b.isFavorite } : b));
-    });
+    }).then(() => setBooks(books.filter((b) => b.id !== book.id)));
   };
 
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">Book List</h1>
+      <h1 className="text-xl font-bold mb-4">Favorite Books</h1>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {books.map((book) => (
           <li key={book.id} className="border rounded p-4 shadow">
