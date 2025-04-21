@@ -16,6 +16,13 @@ function AddBook() {
       image,
     };
 
+    // ✅ Log the input values to the console
+    // console.log("Submitting new book:");
+    console.log("Title:", title);
+    console.log("Author:", author);
+    console.log("Genre:", genre);
+    console.log("Image URL:", image);
+
     fetch("http://localhost:3000/books", {
       method: "POST",
       headers: {
@@ -26,7 +33,6 @@ function AddBook() {
       .then((res) => res.json())
       .then((data) => {
         console.log("Book added:", data);
-        // optionally reset form or show a message
         setTitle("");
         setAuthor("");
         setGenre("");
