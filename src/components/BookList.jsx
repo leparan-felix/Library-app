@@ -1,5 +1,9 @@
+
+import React, { useEffect, useState } from "react";
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import BookCard from "./BookCard";
 
 function BookList() {
@@ -14,11 +18,16 @@ function BookList() {
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    fetch("http://localhost:3007/books")
+      .then((res) => res.json())
+
     fetch("http://localhost:3004/books")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch books.");
         return res.json();
       })
+
       .then((data) => {
         setBooks(data);
         setLoading(false);
@@ -29,6 +38,15 @@ function BookList() {
         setLoading(false);
       });
   }, []);
+
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:3007/books/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => {
+        const updatedBooks = books.filter((book) => book.id !== id);
+        setBooks(updatedBooks);
 
   const handleDeleteConfirm = () => {
     if (!bookToDelete) return;
@@ -45,6 +63,7 @@ function BookList() {
         console.error(err);
         setError("Failed to delete the book.");
         setBookToDelete(null);
+
       });
   };
 
@@ -60,6 +79,21 @@ function BookList() {
   const totalPages = Math.ceil(books.length / booksPerPage);
 
   return (
+
+    <div>
+      <input
+        type="text"
+        placeholder="Search books"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        filteredBooks.map((book) => (
+          <BookCard key={book.id} book={book} handleDelete={handleDelete} />
+        ))
+
     <div className="booklist-container">
       <div className="booklist-header">
        
@@ -118,6 +152,7 @@ function BookList() {
             <button onClick={() => setBookToDelete(null)}>Cancel</button>
           </div>
         </div>
+
       )}
     </div>
   );
