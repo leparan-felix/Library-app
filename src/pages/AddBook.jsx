@@ -16,8 +16,8 @@ function AddBook() {
       image,
     };
 
-    // ✅ Log the input values to the console
-    // console.log("Submitting new book:");
+    
+     console.log("Submitting new book:");
     console.log("Title:", title);
     console.log("Author:", author);
     console.log("Genre:", genre);
