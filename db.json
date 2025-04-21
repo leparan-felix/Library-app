@@ -1,28 +1,25 @@
 {
   "books": [
     {
-      "id": "a8b7",
-      "title": "assdf",
-      "author": "sdafasdf",
-      "genre": "dfsfd",
-      "publicationYear": "2000",
-      "isFavorite": true
+      "id": 1,
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "year": 1960
     },
     {
-      "id": "96b9",
-      "title": "SKASJAIDUWE",
-      "author": "ASDLSJSL",
-      "genre": "DWIEIDWEIO",
-      "publicationYear": "2030",
-      "isFavorite": true
+      "id": 2,
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "year": 1949
     },
     {
-      "id": "6a33",
-      "title": "ATTTEWEU",
-      "author": "WEDD",
-      "genre": "SDFSFD",
-      "publicationYear": "2040",
-      "isFavorite": false
+      "id": 3,
+      "title": "Rich Dad Poor Dad",
+      "author": "Robert Kiyosaki",
+      "genre": "Finance",
+      "year": 1997
     }
   ]
 }
