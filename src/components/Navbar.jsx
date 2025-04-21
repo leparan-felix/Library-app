@@ -11,10 +11,18 @@ const Navbar = () => {
           <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             Home
           </NavLink>
+          <NavLink to="/favorites" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            Favorite Books
+          </NavLink>
+          
+          <NavLink to="/BookList" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          BookList
+          </NavLink>
           
           <NavLink to="/add" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             Add Book
           </NavLink>
+          
           
         </div>
       </div>

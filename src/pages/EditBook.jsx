@@ -1,98 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const EditBook = () => {
+export default function EditBook() {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [genre, setGenre] = useState('');
-  const [image, setImage] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [book, setBook] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3004/books/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch book');
-        return res.json();
-      })
-      .then((data) => {
-        setTitle(data.title || '');
-        setAuthor(data.author || '');
-        setGenre(data.genre || '');
-        setImage(data.image || '');
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('Fetch error:', err);
-        setError(err.message || 'Something went wrong');
-        setLoading(false);
-      });
+    fetch(`http://localhost:3000/books/${id}`)
+      .then((res) => res.json())
+      .then((data) => setBook(data));
   }, [id]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setBook({ ...book, [name]: type === 'checkbox' ? checked : value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedBook = { title, author, genre, image };
-
-    fetch(`http://localhost:3004/books/${id}`, {
+    fetch(`http://localhost:3000/books/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updatedBook),
+      body: JSON.stringify(book),
     })
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to update book');
-        return res.json();
-      })
-      .then(() => navigate('/'))
-      .catch((err) => {
-        console.error('Update error:', err);
-        setError(err.message || 'Something went wrong');
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('✏️ Edited book:', data); // ✅ Console log
+        navigate('/');
       });
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (!book) return <p>Loading book...</p>;
 
   return (
-    <div className="edit-book">
-      <h2>Edit Book</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Title:</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-
-        <label>Author:</label>
-        <input
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-        />
-
-        <label>Genre:</label>
-        <input
-          type="text"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        />
-
-        <label>Image URL:</label>
-        <input
-          type="text"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-
-        <button type="submit">Save Changes</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+      <h1 className="text-xl font-bold">Edit Book</h1>
+      <input type="text" name="title" value={book.title} onChange={handleChange} className="w-full border p-2" required />
+      <input type="text" name="author" value={book.author} onChange={handleChange} className="w-full border p-2" required />
+      <input type="text" name="genre" value={book.genre} onChange={handleChange} className="w-full border p-2" required />
+      <input type="number" name="publicationYear" value={book.publicationYear} onChange={handleChange} className="w-full border p-2" required />
+      <label className="flex items-center gap-2">
+        <input type="checkbox" name="isFavorite" checked={book.isFavorite} onChange={handleChange} /> Favorite
+      </label>
+      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">Save Changes</button>
+    </form>
   );
-};
-
-export default EditBook;
+}

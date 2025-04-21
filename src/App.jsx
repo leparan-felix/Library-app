@@ -1,38 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import BookList from './pages/BookList';
-import Home from './pages/Home';
-
+import { Routes, Route, Link } from 'react-router-dom';
+import BookList from './components/BookList';
 import AddBook from './pages/AddBook';
-import './css/App.css'; 
+import EditBook from './pages/EditBook';
+import BookDetails from './pages/BookDetails';
+import FavoriteBooks from './pages/FavoriteBooks';
+import Navbar from './components/Navbar';
 
-
-function App() {
+import Home from './pages/Home';
+export default function App() {
   return (
-    <div id="root">
-      <Router>
-        <header className="header">
-          
-          <Navbar />
-         
-        </header>
-
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/add" element={<AddBook />} />
-            <Route path="/books" element={<BookList />} />
-           
-          </Routes>
-        </main>
-
-        <footer className="library-footer">
-          <p>© {new Date().getFullYear()} Library App</p>
-        </footer>
-      </Router>
+    <div className="p-4">
+      <Navbar />
+      <Home />
+      
+      <Routes>
+        <Route path="/BookList" element={<BookList />} />
+        <Route path="/add" element={<AddBook />} />
+        <Route path="/edit/:id" element={<EditBook />} />
+        <Route path="/details/:id" element={<BookDetails />} />
+        <Route path="/favorites" element={<FavoriteBooks />} />
+        
+      </Routes>
     </div>
   );
 }
-
-export default App;

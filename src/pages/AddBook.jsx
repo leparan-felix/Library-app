@@ -1,81 +1,54 @@
-import React, { useState } from "react";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function AddBook() {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [genre, setGenre] = useState("");
-  const [image, setImage] = useState("");
+export default function AddBook() {
+  const navigate = useNavigate();
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    genre: '',
+    publicationYear: '',
+    isFavorite: false,
+  });
 
-  function handleSubmit(e) {
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setBook({ ...book, [name]: type === 'checkbox' ? checked : value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newBook = {
-      title,
-      author,
-      genre,
-      image,
-    };
-
-    // ✅ Log the input values to the console
-    // console.log("Submitting new book:");
-    console.log("Title:", title);
-    console.log("Author:", author);
-    console.log("Genre:", genre);
-    console.log("Image URL:", image);
-
-    fetch("http://localhost:3000/books", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newBook),
+    fetch('http://localhost:3000/books', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Book added:", data);
-        setTitle("");
-        setAuthor("");
-        setGenre("");
-        setImage("");
-        alert("Book added successfully!");
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to save the book');
+        return res.json();
       })
-      .catch((error) => console.error("Error adding book:", error));
-  }
+      .then((data) => {
+        console.log('Book saved:', data);
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error('Error:', err);
+        alert('Failed to save book. Make sure the server is running.');
+      });
+    
+  };
 
   return (
-    <div className="add-book">
-      <h2>Add a New Book</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Genre"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
-        />
-        <button type="submit">Add Book</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
+      <h1 className="text-xl font-bold">Add New Book</h1>
+      <input type="text" name="title" placeholder="Title" value={book.title} onChange={handleChange} className="w-full border p-2" required />
+      <input type="text" name="author" placeholder="Author" value={book.author} onChange={handleChange} className="w-full border p-2" required />
+      <input type="text" name="genre" placeholder="Genre" value={book.genre} onChange={handleChange} className="w-full border p-2" required />
+      <input type="number" name="publicationYear" placeholder="Publication Year" value={book.publicationYear} onChange={handleChange} className="w-full border p-2" required />
+      <label className="flex items-center gap-2">
+        <input type="checkbox" name="isFavorite" checked={book.isFavorite} onChange={handleChange} /> Favorite
+      </label>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Add Book</button>
+    </form>
   );
 }
-
-export default AddBook;
