@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import BookList from './components/BookList';
+import BookList from './pages/BookList';
 import Home from './pages/Home';
 
 import AddBook from './pages/AddBook';
 import './css/App.css'; 
+
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/add" element={<AddBook />} />
             <Route path="/books" element={<BookList />} />
+           
           </Routes>
         </main>
 

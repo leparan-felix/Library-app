@@ -1,15 +1,12 @@
-function BookCard({ book, onDelete }) {
+import { Link } from "react-router-dom";
+
+function BookCard({ book, onDelete, onEdit }) {
   return (
     <div className="book-card">
-      <h2>{book.title}</h2>
-      <p>Author: {book.author}</p>
-      <p>Genre: {book.genre}</p>
-      <p>Year: {book.publicationYear}</p>
-      <p>Favorite: {book.isFavorite ? "❤️" : "❌"}</p>
-
-      <button className="delete-button" onClick={() => onDelete(book.id)}>
-        Delete
-      </button>
+      <h3>{book.title}</h3>
+      <p>{book.author}</p>
+      <button onClick={onEdit}>✏️ Edit</button>
+      <button onClick={onDelete}>🗑️ Delete</button>
     </div>
   );
 }

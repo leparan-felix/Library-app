@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 
 function AddBook() {
@@ -16,6 +15,13 @@ function AddBook() {
       genre,
       image,
     };
+
+    // ✅ Log the input values to the console
+    // console.log("Submitting new book:");
+    console.log("Title:", title);
+    console.log("Author:", author);
+    console.log("Genre:", genre);
+    console.log("Image URL:", image);
 
     fetch("http://localhost:3000/books", {
       method: "POST",
