@@ -5,15 +5,15 @@ import EditBook from './pages/EditBook';
 import BookDetails from './pages/BookDetails';
 import FavoriteBooks from './pages/FavoriteBooks';
 import Navbar from './components/Navbar';
-
 import Home from './pages/Home';
+import './index.css';
+
 export default function App() {
   return (
     <div className="p-4">
-      <Navbar />
-      <Home />
-      
+      <Navbar />      
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/BookList" element={<BookList />} />
         <Route path="/add" element={<AddBook />} />
         <Route path="/edit/:id" element={<EditBook />} />

@@ -35,7 +35,7 @@ export default function BookList() {
   
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">BookList</h1>
+      <h1 className="book-list ">BookList</h1>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {books.map((book) => (
           <li key={book.id} className="border rounded p-4 shadow">
