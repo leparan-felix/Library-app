@@ -1,22 +1,34 @@
-
-import React from "react";
 import { Link } from "react-router-dom";
 
-function BookCard({ book, onDelete, onEdit }) {
-  return (
-    <div className="book-card border p-4 shadow-md mb-4 rounded">
-      <h3 className="text-lg font-bold">{book.title}</h3>
-      <p className="text-gray-700">Author: {book.author}</p>
-      <p className="text-gray-600">Genre: {book.genre}</p>
-      <p className="text-gray-600">Year: {book.publicationYear}</p>
+function BookCard({ book }) {
+  function handleDelete(id) {
+    fetch(`http://localhost:3005/books/${id}`, {
+      method: "DELETE",
+    }).then(() => window.location.reload());
+  }
 
-      <div className="mt-2 space-x-2">
-        <button onClick={onEdit} className="bg-yellow-400 px-3 py-1 rounded">
-          ✏️ Edit
+  function toggleFavorite(book) {
+    fetch(`http://localhost:3005/books/${book.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ favorite: !book.favorite }),
+    }).then(() => window.location.reload());
+  }
+
+  return (
+    <div className="book-card">
+      <img src={book.image} alt={book.title} />
+      <h3>{book.title}</h3>
+      <p>By {book.author}</p>
+      <div className="card-btn-group">
+        <Link to={`/books/${book.id}`} className="details-btn">Details</Link>
+        <button onClick={() => toggleFavorite(book)} className="favorite-btn">
+          {book.favorite ? "💔" : "❤️"}
         </button>
-        <button onClick={onDelete} className="bg-red-500 text-white px-3 py-1 rounded">
-          🗑️ Delete
-        </button>
+        <Link to={`/edit/${book.id}`} className="edit-btn">Edit</Link>
+        <button onClick={() => handleDelete(book.id)} className="delete-btn">Delete</button>
       </div>
     </div>
   );

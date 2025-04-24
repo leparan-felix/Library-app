@@ -1,14 +1,22 @@
-function SearchBar({ searchTerm, onSearch }) {
+import { useState } from "react";
+
+function SearchBar({ onSearch }) {
+  const [query, setQuery] = useState("");
+
+  function handleInput(e) {
+    const value = e.target.value;
+    setQuery(value);
+    onSearch(value);
+  }
+
   return (
-    <div className="search-container">
+    <div className="search-bar">
       <input
         type="text"
-        placeholder="Search by title, author, or keyword..."
-        value={searchTerm}
-        onChange={(e) => onSearch(e.target.value)}
-        className="search-input"
+        placeholder="Search by title..."
+        value={query}
+        onChange={handleInput}
       />
-      <span className="search-icon">🔍</span>
     </div>
   );
 }

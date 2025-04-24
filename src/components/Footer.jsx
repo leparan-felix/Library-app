@@ -1,21 +1,9 @@
-import React from 'react';
-
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
+function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-content">
-      <p>© {new Date().getFullYear()} Library App</p>
-        <div className="footer-links">
-          <a href="/about">About</a>
-          <a href="/privacy">Privacy</a>
-          <a href="/contact">Contact</a>
-          
-        </div>
-      </div>
+      <p>&copy; 2025 React Library App</p>
     </footer>
   );
-};
+}
 
 export default Footer;

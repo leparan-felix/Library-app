@@ -1,92 +1,58 @@
 {
   "books": [
     {
-      "id": 1,
-      "title": "To Kill a Mockingbird",
-      "author": "Harper Lee",
-      "genre": "Fiction",
-      "year": 1960,
-      "image": "https://covers.openlibrary.org/b/id/8228691-L.jpg"
-    },
-    {
-      "id": 2,
-      "title": "1984",
-      "author": "George Orwell",
-      "genre": "Dystopian",
-      "year": 1949,
-      "image": "https://covers.openlibrary.org/b/id/7222246-L.jpg"
-    },
-    {
-      "id": 3,
-      "title": "Rich Dad Poor Dad",
-      "author": "Robert Kiyosaki",
-      "genre": "Finance",
-      "year": 1997,
-      "image": "https://covers.openlibrary.org/b/id/11153213-L.jpg"
-    },
-    {
-      "id": 4,
-      "title": "The Alchemist",
-      "author": "Paulo Coelho",
-      "genre": "Adventure",
-      "year": 1988,
-      "image": "https://covers.openlibrary.org/b/id/8277896-L.jpg"
-    },
-    {
-      "id": 5,
-      "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "genre": "Classic",
-      "year": 1925,
-      "image": "https://covers.openlibrary.org/b/id/7352165-L.jpg"
-    },
-    {
-      "id": 6,
+      "id": "1",
       "title": "Atomic Habits",
       "author": "James Clear",
       "genre": "Self-help",
       "year": 2018,
-      "image": "https://covers.openlibrary.org/b/id/9250116-L.jpg"
+      "favorite": true,
+      "image": "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg"
     },
     {
-      "id": 7,
-      "title": "Becoming",
-      "author": "Michelle Obama",
-      "genre": "Memoir",
-      "year": 2018,
-      "image": "https://covers.openlibrary.org/b/id/9259576-L.jpg"
+      "id": "2",
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "year": 1988,
+      "favorite": true,
+      "image": "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg"
     },
     {
-      "id": 8,
-      "title": "The 48 Laws of Power",
-      "author": "Robert Greene",
-      "genre": "Strategy",
-      "year": 2000,
-      "image": "https://covers.openlibrary.org/b/id/12318058-L.jpg"
+      "id": "3",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "year": 1949,
+      "favorite": false,
+      "image": "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0mfL.jpg"
     },
     {
-      "id": 9,
-      "title": "Harry Potter and the Philosopher’s Stone",
-      "author": "J.K. Rowling",
-      "genre": "Fantasy",
+      "id": "6",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Fiction",
+      "year": 1925,
+      "favorite": false,
+      "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg"
+    },
+    {
+      "id": "7",
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "genre": "History",
+      "year": 2014,
+      "favorite": false,
+      "image": "https://m.media-amazon.com/images/I/713jIoMO3UL.jpg"
+    },
+    {
+      "id": "8",
+      "title": "Rich Dad Poor Dad",
+      "author": "Robert Kiyosaki",
+      "genre": "Finance",
       "year": 1997,
-      "image": "https://covers.openlibrary.org/b/id/7884866-L.jpg"
-    },
-    {
-      "id": 10,
-      "title": "The Subtle Art of Not Giving a F*ck",
-      "author": "Mark Manson",
-      "genre": "Self-help",
-      "year": 2016,
-      "image": "https://covers.openlibrary.org/b/id/8369251-L.jpg"
-    },
-    {
-      "id": "1486",
-      "title": "43544",
-      "author": "455",
-      "genre": "5456",
-      "publicationYear": "1223",
-      "isFavorite": false
+      "favorite": false,
+      "image": "https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg"
     }
   ]
 }

@@ -1,32 +1,17 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
   return (
     <nav className="navbar">
-      <div className="navbar-container">
-        <h1 className="navbar-title">📘 Library App</h1>
-        <div className="navbar-links">
-          <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            Home
-          </NavLink>
-          <NavLink to="/favorites" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            Favorite Books
-          </NavLink>
-          
-          <NavLink to="/BookList" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-          BookList
-          </NavLink>
-          
-          <NavLink to="/add" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-            Add Book
-          </NavLink>
-          
-          
-        </div>
-      </div>
+      <h1 className="logo">React Library</h1>
+      <ul className="nav-links">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/books">All Books</Link></li>
+        <li><Link to="/add">Add Book</Link></li>
+        <li><Link to="/favorites">Favorites</Link></li>
+      </ul>
     </nav>
   );
-};
+}
 
 export default Navbar;

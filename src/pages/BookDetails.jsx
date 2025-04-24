@@ -1,38 +1,30 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
 
-export default function BookDetails() {
+import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+function BookDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [book, setBook] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/books/${id}`)
+    fetch(`http://localhost:3005/books/${id}`)
       .then(res => res.json())
-      .then(setBook);
+      .then(data => setBook(data));
   }, [id]);
-
-  const toggleFavorite = () => {
-    fetch(`http://localhost:3000/books/${book.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ isFavorite: !book.isFavorite }),
-    }).then(() => setBook({ ...book, isFavorite: !book.isFavorite }));
-  };
 
   if (!book) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-xl mx-auto space-y-4">
-      <h1 className="text-2xl font-bold">{book.title}</h1>
+    <div className="book-detail">
+      <img src={book.image} alt={book.title} />
+      <h2>{book.title}</h2>
       <p><strong>Author:</strong> {book.author}</p>
       <p><strong>Genre:</strong> {book.genre}</p>
-      <p><strong>Publication Year:</strong> {book.publicationYear}</p>
-      <p><strong>Favorite:</strong> {book.isFavorite ? 'Yes' : 'No'} <button onClick={toggleFavorite}>{book.isFavorite ? '★' : '☆'}</button></p>
-      <div className="flex gap-4">
-        <Link to="/" className="text-blue-600">Back to List</Link>
-        <Link to={`/edit/${book.id}`} className="text-green-600">Edit</Link>
-      </div>
+      <p><strong>Year:</strong> {book.year}</p>
+      <p><strong>Favorite:</strong> {book.favorite ? "Yes" : "No"}</p>
+      <Link to={`/edit/${book.id}`} className="details-btn">Edit Book</Link>
     </div>
   );
 }
+
+export default BookDetails;

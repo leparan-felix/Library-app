@@ -1,26 +1,28 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import BookList from './components/BookList';
-import AddBook from './pages/AddBook';
-import EditBook from './pages/EditBook';
-import BookDetails from './pages/BookDetails';
-import FavoriteBooks from './pages/FavoriteBooks';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import './index.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import BookList from "./pages/BookList";
+import BookDetails from "./pages/BookDetails";
+import AddBook from "./pages/AddBook";
+import EditBook from "./pages/EditBook";
+import FavoriteBooks from "./pages/FavoriteBooks";
 
-export default function App() {
+function App() {
   return (
-    <div className="p-4">
-      <Navbar />      
+    <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/BookList" element={<BookList />} />
+        <Route path="/books" element={<BookList />} />
+        <Route path="/books/:id" element={<BookDetails />} />
         <Route path="/add" element={<AddBook />} />
         <Route path="/edit/:id" element={<EditBook />} />
-        <Route path="/details/:id" element={<BookDetails />} />
         <Route path="/favorites" element={<FavoriteBooks />} />
-        
       </Routes>
-    </div>
+      <Footer />
+    </Router>
   );
 }
+
+export default App;
