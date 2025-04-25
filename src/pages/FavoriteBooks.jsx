@@ -5,7 +5,7 @@ function FavoriteBooks() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3005/books?favorite=true")
+    fetch("https://library-jsonserver.vercel.app/books?favorite=true")
       .then((res) => res.json())
       .then((data) => setFavorites(data));
   }, []);

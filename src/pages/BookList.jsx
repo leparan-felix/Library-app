@@ -6,7 +6,7 @@ function BookList() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3005/books")
+    fetch("https://library-jsonserver.vercel.app/books")
       .then(res => res.json())
       .then(data => setBooks(data));
   }, []);

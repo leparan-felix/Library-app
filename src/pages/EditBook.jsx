@@ -7,7 +7,7 @@ function EditBook() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:3005/books/${id}`)
+    fetch(`https://library-jsonserver.vercel.app/books/${id}`)
       .then(res => res.json())
       .then(data => setForm(data));
   }, [id]);
@@ -22,7 +22,7 @@ function EditBook() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`http://localhost:3005/books/${id}`, {
+    fetch(`https://library-jsonserver.vercel.app/books/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -9,7 +9,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3005/books")
+    fetch("https://library-jsonserver.vercel.app/books")
       .then(res => {
         if (!res.ok) throw new Error("Failed to fetch books");
         return res.json();
